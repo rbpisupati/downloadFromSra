@@ -12,7 +12,10 @@ process downloadFiles {
     path("${id}**.fastq")
 
   script:
-    template 'downloadFiles.bash'
+  """
+  set -euo pipefail
+  fasterq-dump --split-3 ${id} -t ./
+  """
 }
 
 
